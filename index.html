@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codashop Free Fire</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0d000d;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        header {
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+        }
+        .logo-title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #444;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        header img {
+            max-width: 80px;
+            margin-right: 10px;
+        }
+        .carousel {
+            position: relative;
+            max-width: 600px;
+            margin: 20px auto;
+            overflow: hidden;
+            text-align: center;
+        }
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .carousel img {
+            min-width: 100%;
+            max-width: 100%;
+        }
+        .indicators {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .indicator {
+            height: 10px;
+            width: 10px;
+            background-color: #555;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 5px;
+        }
+        .indicator.active {
+            background-color: #fff;
+        }
+        .alert-message {
+            background-color: #ff0000;
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+            margin: 20px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .store-title {
+            font-size: 2.5em;
+            color: #ffcc00;
+            text-align: center;
+            margin: 30px 0;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px #000;
+        }
+        .free-prizes-title {
+            font-size: 2em;
+            color: gray;
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+            animation: titleBlink 1.5s infinite alternate;
+        }
+        .products, .free-products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+        }
+        .product, .free-product {
+            background-color: #222;
+            border-radius: 5px;
+            margin: 10px;
+            padding: 15px;
+            text-align: center;
+            width: calc(25% - 40px);
+            box-sizing: border-box;
+            flex: 1 0 21%;
+            border: 3px solid transparent;
+            animation: borderAnimation 3s infinite linear;
+        }
+        .product img, .free-product img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+        .product-name, .free-product-name {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        .product-price {
+            color: #ffcc00;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        .buy-button {
+            background-color: #28a745;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .buy-button:hover {
+            background-color: #218838;
+        }
+        .redeem-button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .redeem-button:hover {
+            background-color: #0056b3;
+        }
+        .garena-logo-section {
+            background-color: #666;
+            text-align: center;
+            padding: 10px;
+            margin: 20px auto;
+            border-radius: 10px;
+            max-width: 200px;
+            border: 2px solid #fff;
+        }
+        .garena-logo-section img {
+            max-width: 150px;
+        }
+        .garena-logo-section h2 {
+            color: #fff;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        .trust-message {
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin: 20px;
+            font-size: 1.2em;
+        }
+        footer {
+            background-color: #0d000d;
+            color: #ccc;
+            text-align: center;
+            padding: 20px;
+            font-size: 1em;
+            background-image: url('https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/48331189/kdYiySVjmPogISQQ.jpeg');
+            background-size: cover;
+            background-position: center;
+        }
+        .footer-content {
+            padding: 10px;
+            background-color: rgba(13, 0, 13, 0.8);
+        }
+        .footer-content img {
+            margin: 10px auto 10px;
+        }
+        @keyframes borderAnimation {
+            0% {
+                border-color: red;
+            }
+            33% {
+                border-color: green;
+            }
+            66% {
+                border-color: blue;
+            }
+            100% {
+                border-color: red;
+            }
+        }
+        @media (max-width: 768px) {
+            .product, .free-product {
+                width: calc(50% - 40px);
+            }
+        }
+        @media (max-width: 480px) {
+            .product, .free-product {
+                width: calc(100% - 40px);
+            }
+        }
+        @keyframes titleBlink {
+            0% {
+                text-shadow: 0 0 5px red, 0 0 10px red, 0 0 15px red;
+            }
+            100% {
+                text-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-title">
+            <img src="https://i.ibb.co/WPx5fdR/Picsart-24-10-19-02-20-06-881.png" alt="Codashop Logo">
+            <h1>REI FREE FIRE</h1>
+        </div>
+    </header>
+    <div class="carousel">
+        <div class="carousel-inner">
+            <img src="https://i.ibb.co/W6mYsX1/211502fb84b234d371fcb6dc161086a6.jpg" alt="Imagem 1">
+            <img src="https://i.ibb.co/3dkZPVq/images-3-1.jpg" alt="Imagem 2">
+            <img src="https://i.ibb.co/TBqbR9s/images-4-1.jpg" alt="Imagem 3">
+        </div>
+        <div class="indicators">
+            <span class="indicator active"></span>
+            <span class="indicator"></span>
+            <span class="indicator"></span>
+        </div>
+    </div>
+    <div class="alert-message">
+        Os prêmios acima estão gratuitos apenas para usuários cadastrados em nosso site
+    </div>
+    <div class="store-title">Loja Free Fire</div>
+    <div class="products">
+        <!-- Produtos para venda -->
+        <div class="product">
+            <img src="https://i.ibb.co/8PKyhjh/1b1bd95a2341549947d2f0bc2678be26.jpg" alt="Produto 1">
+            <div class="product-name">2 PASSE</div>
+            <div class="product-price">R$ 55,00</div>
+            <button class="buy-button">Comprar</button>
+        </div>
+        <div class="product">
+            <img src="https://i.ibb.co/TPhVJ4c/eb9c5611a6bead78f5e5a5be55e41425.jpg" alt="Produto 2">
+            <div class="product-name">3 PASSE</div>
+            <div class="product-price">R$ 50,00</div>
+            <button class="buy-button">Comprar</button>
+        </div>
+        <div class="product">
+            <img src="https://i.ibb.co/tD6mJND/07f3db39e6e7b00df98443532ba6ca36.jpg" alt="Produto 3">
+            <div class="product-name">Produto 3</div>
+            <div class="product-price">R$ 200,00</div>
+            <button class="buy-button">Comprar</button>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/150" alt="Produto 4">
+            <div class="product-name">Produto 4</div>
+            <div class="product-price">R$ 250,00</div>
+            <button class="buy-button">Comprar</button>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/150" alt="Produto 5">
+            <div class="product-name">Produto 5</div>
+            <div class="product-price">R$ 300,00</div>
+            <button class="buy-button">Comprar</button>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/150" alt="Produto 6">
+            <div class="product-name">Produto 6</div>
+            <div class="product-price">R$ 350,00</div>
+            <button class="buy-button">Comprar</button>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/150" alt="Produto 7">
+            <div class="product-name">Produto 7</div>
+            <div class="product-price">R$ 400,00</div>
+            <button class="buy-button">Comprar</button>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/150" alt="Produto 8">
+            <div class="product-name">Produto 8</div>
+            <div class="product-price">R$ 450,00</div>
+            <button class="buy-button">Comprar</button>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/150" alt="Produto 9">
+            <div class="product-name">Produto 9</div>
+            <div class="product-price">R$ 500,00</div>
+            <button class="buy-button">Comprar</button>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/150" alt="Produto 10">
+            <div class="product-name">Produto 10</div>
+            <div class="product-price">R$ 550,00</div>
+            <button class="buy-button">Comprar</button>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/150" alt="Produto 11">
+            <div class="product-name">Produto 11</div>
+            <div class="product-price">R$ 600,00</div>
+            <button class="buy-button">Comprar</button>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/150" alt="Produto 12">
+            <div class="product-name">Produto 12</div>
+            <div class="product-price">R$ 650,00</div>
+            <button class="buy-button">Comprar</button>
+        </div>
+    </div>
+    <div class="free-prizes-title">Prêmios Grátis</div>
+    <div class="free-products">
+        <!-- Produtos grátis -->
+        <div class="free-product">
+            <img src="https://via.placeholder.com/150" alt="Produto Grátis 1">
+            <div class="free-product-name">Produto Grátis 1</div>
+            <a href="resgatar.html" class="redeem-button">Resgatar</a>
+        </div>
+        <div class="free-product">
+            <img src="https://via.placeholder.com/150" alt="Produto Grátis 2">
+            <div class="free-product-name">Produto Grátis 2</div>
+            <a href="resgatar.html" class="redeem-button">Resgatar</a>
+        </div>
+        <div class="free-product">
+            <img src="https://via.placeholder.com/150" alt="Produto Grátis 3">
+            <div class="free-product-name">Produto Grátis 3</div>
+            <a href="resgatar.html" class="redeem-button">Resgatar</a>
+        </div>
+        <div class="free-product">
+            <img src="https://via.placeholder.com/150" alt="Produto Grátis 4">
+            <div class="free-product-name">Produto Grátis 4</div>
+            <a href="resgatar.html" class="redeem-button">Resgatar</a>
+        </div>
+        <div class="free-product">
+            <img src="https://via.placeholder.com/150" alt="Produto Grátis 5">
+            <div class="free-product-name">Produto Grátis 5</div>
+            <a href="resgatar.html" class="redeem-button">Resgatar</a>
+        </div>
+        <div class="free-product">
+            <img src="https://via.placeholder.com/150" alt="Produto Grátis 6">
+            <div class="free-product-name">Produto Grátis 6</div>
+            <a href="resgatar.html" class="redeem-button">Resgatar</a>
+        </div>
+        <div class="free-product">
+            <img src="https://via.placeholder.com/150" alt="Produto Grátis 7">
+            <div class="free-product-name">Produto Grátis 7</div>
+            <a href="resgatar.html" class="redeem-button">Resgatar</a>
+        </div>
+        <div class="free-product">
+            <img src="https://via.placeholder.com/150" alt="Produto Grátis 8">
+            <div class="free-product-name">Produto Grátis 8</div>
+            <a href="resgatar.html" class="redeem-button">Resgatar</a>
+        </div>
+    </div>
+    <div class="garena-logo-section">
+        <h2>GARENA FREE FIRE</h2>
+        <img src="https://i.ibb.co/8g5MW49/download-4.png" alt="Garena Logo">
+    </div>
+    <div class="trust-message">
+        Somos um site com total responsabilidade e confiança, comprometidos em oferecer a melhor experiência para nossos usuários.
+    </div>
+    <footer>
+        <div class="footer-content">
+            <img src="https://i.ibb.co/gyXYS3J/Picsart-24-10-19-12-27-16-634.png" alt="Métodos de Pagamento" style="width: 100%; max-width: 800px; margin: 10px auto; display: block;">
+            <p>Avenida Monteiro Lobato 5732, 5732 Apto - Cidade Jardim Cumbica - Guarulhos</p>
+            <p>© 2024 SONIA MARIA LIMAO DALAN CNPJ: 39.564.813/0001-40</p>
+        </div>
+    </footer>
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.carousel-inner img');
+        const indicators = document.querySelectorAll('.indicator');
+        const totalImages = images.length;
+        const carouselInner = document.querySelector('.carousel-inner');
+
+        function showNextImage() {
+            indicators[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % totalImages;
+            carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        setInterval(showNextImage, 3000);
+    </script>
+</body>
+</html>

